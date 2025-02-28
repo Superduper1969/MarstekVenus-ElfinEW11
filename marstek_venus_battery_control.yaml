@@ -1,0 +1,117 @@
+# ----------------
+# TEMPLATE SENSORS
+# ----------------
+  
+  template:
+    - sensor:
+        - name: "My Battery Charging in W"
+          unique_id: my_battery_charging_in_w
+          unit_of_measurement: W
+          device_class: power
+          state_class: measurement
+          state: >
+            {% if states('sensor.lilygo_rs485_marstek_ac_power') | float < 0 %}
+              {{ (states('sensor.lilygo_rs485_marstek_ac_power') | float) *-1 }}
+            {% else %}
+              0
+            {% endif %}
+          
+        - name: "My Battery Discharging in W"
+          unique_id: my_battery_discharging_in_w
+          unit_of_measurement: W
+          device_class: power
+          state_class: measurement
+          state: >
+            {% if states('sensor.lilygo_rs485_marstek_ac_power') | float > 0 %}
+              {{ (states('sensor.lilygo_rs485_marstek_ac_power') | float) }}
+            {% else %}
+              0
+            {% endif %}
+        - name: "My Battery Efficiency Percentage"
+          unique_id: my_battery_efficiency_percentage
+          unit_of_measurement: "%"
+          device_class: power
+          state_class: measurement
+          state: >
+            {% set charging = states('sensor.my_battery_daily_charging_in_kwh') | float %}
+            {% set discharging = states('sensor.my_battery_daily_discharging_in_kwh') | float %}
+            {% if charging > 0 %}
+              {{ ((discharging / charging) * 100) | int }}
+            {% else %}
+              0
+            {% endif %}
+
+# -------
+# SENSORS
+# -------
+  
+  sensor:
+    - platform: integration
+      name: My Battery Discharging in kWh
+      unique_id: my_battery_discharging_in_kwh
+      source: sensor.my_battery_discharging_in_w
+      round: 2
+      unit_prefix: k
+      unit_time: h
+      method: left
+    - platform: integration
+      name: My Battery Charging in kWh
+      unique_id: my_battery_charging_in_kwh
+      source: sensor.my_battery_charging_in_w
+      round: 2
+      unit_prefix: k
+      unit_time: h
+      method: left
+
+# --------------
+# UTILITY METERS
+# --------------
+  utility_meter:
+    daily_discharge:
+      name: My Battery Daily Discharging in kWh
+      unique_id: my_battery_daily_discharging_in_kwh
+      source: sensor.my_battery_discharging_in_kwh
+      cycle: daily
+
+    daily_charge:
+      name: My Battery Daily Charging in kWh
+      unique_id: my_battery_daily_charging_in_kwh
+      source: sensor.my_battery_charging_in_kwh
+      cycle: daily
+
+    weekly_discharge:
+      name: My Battery Weekly Discharging in kWh
+      unique_id: my_battery_weekly_discharging_in_kwh
+      source: sensor.my_battery_discharging_in_kwh
+      cycle: weekly
+
+    weekly_charge:
+      name: My Battery Weekly Charging in kWh
+      unique_id: my_battery_weekly_charging_in_kwh
+      source: sensor.my_battery_charging_in_kwh
+      cycle: weekly
+
+    monthly_discharge:
+      name: My Battery Monthly Discharging in kWh
+      unique_id: my_battery_monthly_discharging_in_kwh
+      source: sensor.my_battery_discharging_in_kwh
+      cycle: monthly
+
+    monthly_charge:
+      name: My Battery Monthly Charging in kWh
+      unique_id: my_battery_monthly_charging_in_kwh
+      source: sensor.my_battery_charging_in_kwh
+      cycle: monthly
+
+    yearly_discharge:
+      name: My Battery Yearly Discharging in kWh
+      unique_id: my_battery_yearly_discharging_in_kwh
+      source: sensor.my_battery_discharging_in_kwh
+      cycle: yearly
+
+    yearly_charge:
+      name: My Battery Yearly Charging in kWh
+      unique_id: my_battery_yearly_charging_in_kwh
+      source: sensor.my_battery_charging_in_kwh
+      cycle: yearly
+
