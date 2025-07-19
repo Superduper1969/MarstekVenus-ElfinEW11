@@ -147,7 +147,7 @@
           unit_of_measurement: V
           device_class: voltage
           state_class: measurement
-          scale: 0.01
+          scale: 0.1
           offset: 0
           precision: 1
   
@@ -189,9 +189,9 @@
         #  unit_of_measurement: kWh
         #  device_class: energy
         #  state_class: measurement
-        #  scale: 1
+        #  scale: 0.01
         #  offset: 0
-        #  precision: 0
+        #  precision: 1
   
         #- name: "My Battery3 Total Discharging Energy"
         #  unique_id: my_battery3_total_discharging_energy
@@ -203,9 +203,9 @@
         #  unit_of_measurement: kWh
         #  device_class: energy
         #  state_class: measurement
-        #  scale: 1
+        #  scale: 0.01
         #  offset: 0
-        #  precision: 0
+        #  precision: 1
   
         #- name: "My Battery3 Daily Charging Energy"
         #  unique_id: my_battery3_daily_charging_energy
@@ -217,9 +217,9 @@
         #  unit_of_measurement: kWh
         #  device_class: energy
         #  state_class: measurement
-        #  scale: 1
+        #  scale: 0.01
         #  offset: 0
-        #  precision: 0
+        #  precision: 1
   
         #- name: "My Battery3 Daily Discharging Energy"
         #  unique_id: my_battery3_daily_discharging_energy
@@ -231,9 +231,9 @@
         #  unit_of_measurement: kWh
         #  device_class: energy
         #  state_class: measurement
-        #  scale: 1
+        #  scale: 0.01
         #  offset: 0
-        #  precision: 0
+        #  precision: 1
   
         #- name: "My Battery3 Monthly Charging Energy"
         #  unique_id: my_battery3_monthly_charging_energy
@@ -245,9 +245,9 @@
         #  unit_of_measurement: kWh
         #  device_class: energy
         #  state_class: measurement
-        #  scale: 1
+        #  scale: 0.01
         #  offset: 0
-        #  precision: 0
+        #  precision: 1
   
         #- name: "My Battery3 Monthly Discharging Energy"
         #  unique_id: my_battery3_monthly_discharging_energy
@@ -259,9 +259,9 @@
         #  unit_of_measurement: kWh
         #  device_class: energy
         #  state_class: measurement
-        #  scale: 1
+        #  scale: 0.01
         #  offset: 0
-        #  precision: 0
+        #  precision: 1
   
         - name: "My Battery3 Internal Temperature"
           unique_id: my_battery3_internal_temperature
