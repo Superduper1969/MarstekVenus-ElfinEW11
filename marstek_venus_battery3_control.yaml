@@ -491,7 +491,7 @@
   # # charge power
   # action: modbus.write_register
   # data:
-  #   hub: MarstekVenus
+  #   hub: MarstekVenus3
   #   address: 42020
   #   slave: 1
   #   value: 200
@@ -499,7 +499,7 @@
   # # discharge power
   # action: modbus.write_register
   # data:
-  #   hub: MarstekVenus
+  #   hub: MarstekVenus3
   #   address: 42021
   #   slave: 1
   #   value: 200
@@ -507,7 +507,7 @@
   # # force discharge
   # action: modbus.write_register
   # data:
-  #   hub: MarstekVenus
+  #   hub: MarstekVenus3
   #   address: 42010
   #   slave: 1
   #   value: 2
@@ -515,7 +515,7 @@
   # # force charge
   # action: modbus.write_register
   # data:
-  #   hub: MarstekVenus
+  #   hub: MarstekVenus3
   #   address: 42010
   #   slave: 1
   #   value: 1
@@ -523,7 +523,7 @@
   # # stop forcible discharge
   # action: modbus.write_register
   # data:
-  #   hub: MarstekVenus
+  #   hub: MarstekVenus3
   #   address: 42010
   #   slave: 1
   #   value: 0
@@ -556,19 +556,19 @@
               sequence:
                 - action: modbus.write_register
                   data:
-                    hub: MarstekVenus
+                    hub: MarstekVenus3
                     address: 42010
                     slave: 1
                     value: 0
                 - action: modbus.write_register
                   data:
-                    hub: MarstekVenus
+                    hub: MarstekVenus3
                     address: 42020
                     slave: 1
                     value: 0
                 - action: modbus.write_register
                   data:
-                    hub: MarstekVenus
+                    hub: MarstekVenus3
                     address: 42021
                     slave: 1
                     value: 0
@@ -580,13 +580,13 @@
               sequence:
                 - action: modbus.write_register
                   data:
-                    hub: MarstekVenus
+                    hub: MarstekVenus3
                     address: 42021
                     slave: 1
                     value: "{{states('input_number.my_battery3_discharging_charging_power')|int|abs}}"
                 - action: modbus.write_register
                   data:
-                    hub: MarstekVenus
+                    hub: MarstekVenus3
                     address: 42010
                     slave: 1
                     value: 2
@@ -598,13 +598,13 @@
               sequence:
                 - action: modbus.write_register
                   data:
-                    hub: MarstekVenus
+                    hub: MarstekVenus3
                     address: 42020
                     slave: 1
                     value: "{{states('input_number.my_battery3_discharging_charging_power')|int|abs}}"
                 - action: modbus.write_register
                   data:
-                    hub: MarstekVenus
+                    hub: MarstekVenus3
                     address: 42010
                     slave: 1
                     value: 1
@@ -660,7 +660,7 @@
               - action: modbus.write_register
                 metadata: {}
                 data:
-                  hub: MarstekVenus
+                  hub: MarstekVenus3
                   address: 43000
                   slave: 1
                   value: >
@@ -748,14 +748,14 @@
           turn_on:
             action: modbus.write_register
             data:
-              hub: MarstekVenus
+              hub: MarstekVenus3
               unit: 1
               address: 42000
               value: 21930 # Write 0x55AA to enable RS485 control mode
           turn_off:
             action: modbus.write_register
             data:
-              hub: MarstekVenus
+              hub: MarstekVenus3
               unit: 1
               address: 42000
               value: 21947 # Write 0x55BB to disable RS485 control mode
